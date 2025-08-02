@@ -107,43 +107,97 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 ## 8. Prototipo Conceptual – Código de Prueba Simulado
 
 ```python
-#include <TinyGPSPlus.h>
-#include <HardwareSerial.h>
+# code.py
+# Prototipo de conexión WiFi + consulta a LLM con contexto de ubicación (GPS simulado)
+# Proyecto: Sistema ciberfísico basado en ESP32 + IA Generativa
+# Autor: [Tu nombre o equipo]
+# Fecha: 2025
 
-// Configuración del GPS
-TinyGPSPlus gps;
-HardwareSerial GPS_Serial(1);  // UART1 para GPS
+import time
+import wifi
+import socketpool
+import ssl
+import microcontroller
+import adafruit_requests
+from secrets import secrets
 
-void setup() {
-  Serial.begin(115200);       // Monitor Serial
-  GPS_Serial.begin(9600, SERIAL_8N1, 16, 17); // RX=16, TX=17 (ajustar según conexión)
+# ------------------------- CONFIGURACIÓN DE GPS -------------------------
 
-  Serial.println("Iniciando módulo GPS...");
-}
+# Coordenadas GPS (simuladas) — San José, Costa Rica
+GPS_LAT = 9.9333
+GPS_LON = -84.0833
 
-void loop() {
-  while (GPS_Serial.available() > 0) {
-    char c = GPS_Serial.read();
-    gps.encode(c);
+# ------------------------- FUNCIÓN: Conectar WiFi -------------------------
 
-    if (gps.location.isUpdated()) {
-      float lat = gps.location.lat();
-      float lng = gps.location.lng();
+def conectar_wifi():
+    """Intenta conectar a una red WiFi con credenciales del archivo secrets.py"""
+    try:
+        print("📡 Conectando a red WiFi...")
+        wifi.radio.connect(secrets["ssid"], secrets["password"])
+        print("✅ Conectado a", secrets["ssid"])
+        print("🌐 Dirección IP:", wifi.radio.ipv4_address)
+    except Exception as e:
+        print("❌ Error de conexión WiFi:", e)
+        time.sleep(3)
+        microcontroller.reset()  # Reinicia el microcontrolador si falla la conexión
 
-      Serial.print("Latitud: ");
-      Serial.println(lat, 6);
-      Serial.print("Longitud: ");
-      Serial.println(lng, 6);
+# ------------------------- FUNCIÓN: Construir prompt -------------------------
 
-      // Ejemplo: detección básica de punto de interés (simulado)
-      if (isNear(lat, lng, 9.93333, -84.08333, 0.001)) {
-        Serial.println(">> Estás cerca de San José Centro");
-      }
+def generar_prompt(lat, lon):
+    """Crea un prompt personalizado con base en coordenadas GPS"""
+    return (
+        f"Estoy en las coordenadas {lat}, {lon}. "
+        "Dame una breve descripción de este lugar en Costa Rica, usando lenguaje claro."
+    )
+
+# ------------------------- FUNCIÓN: Consultar Gemini -------------------------
+
+def consultar_gemini(prompt, api_key):
+    """Envía un prompt al modelo Gemini y devuelve la respuesta"""
+    API_URL = (
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+        f"?key={api_key}"
+    )
+
+    headers = {"Content-Type": "application/json"}
+    body = {
+        "contents": [{
+            "parts": [{"text": prompt}]
+        }]
     }
-  }
-}
 
-// Función para verificar cercanía a un punto objetivo (lat, lng, radio en grados)
-bool isNear(float lat1, float lng1, float lat2, float lng2, float radius) {
-  return (abs(lat1 - lat2) < radius) && (abs(lng1 - lng2) < radius);
-}
+    try:
+        print("🧠 Consultando modelo generativo...")
+        pool = socketpool.SocketPool(wifi.radio)
+        session = adafruit_requests.Session(pool, ssl.create_default_context())
+        response = session.post(API_URL, headers=headers, json=body)
+
+        if response.status_code == 200:
+            result = response.json()
+            texto = result["candidates"][0]["content"]["parts"][0]["text"]
+            return texto.strip()
+        else:
+            print(f"⚠️ Error {response.status_code}: {response.text}")
+            return None
+    except Exception as e:
+        print("❌ Error en consulta Gemini:", e)
+        return None
+
+# ------------------------- MAIN -------------------------
+
+def main():
+    conectar_wifi()
+
+    prompt = generar_prompt(GPS_LAT, GPS_LON)
+    respuesta = consultar_gemini(prompt, secrets["api_key"])
+
+    if respuesta:
+        print("\n📍 Descripción del lugar (generada por IA):")
+        print("-" * 50)
+        print(respuesta)
+        print("-" * 50)
+    else:
+        print("No se obtuvo respuesta del modelo.")
+
+# Ejecutar programa principal
+main()
