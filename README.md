@@ -17,10 +17,28 @@
 - Nathan Esquivel Méndez
 - Cristopher Gutiérrez Vega
 
-**Roles:**
-- 🛠️ [Integrante 1]: Desarrollador de firmware y lógica del microcontrolador.  
-- 🎨 [Integrante 2]: Diseñador UX/UI y encargado del prototipo físico.  
-- 📚 [Integrante 3]: Investigador e integrador de la API de lenguaje natural.
+## 👥 Roles del equipo
+
+- 🛠️ **Desarrollador principal de firmware y lógica embebida**  
+  **Nombre:** *David R.*  
+  Se encarga del desarrollo en CircuitPython, la lógica del GPS, conexión Wi-Fi, integración con APIs y depuración general del código en el ESP32.
+
+- 🎨 **Diseñador UX/UI y modelador del prototipo físico**  
+  **Nombre:** *Nathan E.*  
+  Responsable del diseño estético del prototipo, bocetos de interfaz, modelado en 3D para impresión y presentación física del sistema.
+
+- 📚 **Investigador técnico y apoyo en integración LLM**  
+  **Nombre:** *Sebastián C.*  
+  Encargado de investigar documentación oficial de componentes (GPS, Wi-Fi, ESP32), pruebas de compatibilidad, y organización del flujo de consulta al modelo de lenguaje.
+
+- 🧠 **Documentador, apoyo en pruebas y presentaciones**  
+  **Nombre:** *Cristopher G.*  
+  Lidera la preparación para exposiciones, recopila resultados de pruebas, mantiene la bitácora técnica y asegura la correcta comprensión del funcionamiento por parte del equipo.
+
+---
+
+> ⚠️ **Nota:** Aunque cada miembro asumió un rol principal, trabajamos en equipo, compartiendo tareas y aprendiendo de forma colaborativa durante todo el proceso.
+
 
 ---
 
