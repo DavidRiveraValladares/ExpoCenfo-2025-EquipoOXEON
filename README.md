@@ -4,6 +4,8 @@
 
 **DescubreCR** es un sistema ciberfísico que detecta automáticamente la ubicación geográfica del usuario mediante un microcontrolador con GPS, y despliega información contextual y cultural sobre el sitio en tiempo real. Esta solución interactiva combina hardware embebido con generación dinámica de contenido a través de inteligencia artificial, permitiendo explorar espacios como campus, parques o zonas turísticas de forma educativa y personalizada. El proyecto responde al reto de **ExpoCenfo 2025** de crear *Soluciones para el Mundo Real*.
 
+> 📸 *[Aquí se incluirá una imagen del prototipo físico o del diagrama de bloques próximamente]*
+
 ---
 
 ## 1. Información del Proyecto
@@ -16,6 +18,8 @@
 - Sebastián Cruz González
 - Nathan Esquivel Méndez
 - Cristopher Gutiérrez Vega
+
+---
 
 ## 👥 Roles del equipo
 
@@ -35,10 +39,7 @@
   **Nombre:** *Cristopher G.*  
   Lidera la preparación para exposiciones, recopila resultados de pruebas, mantiene la bitácora técnica y asegura la correcta comprensión del funcionamiento por parte del equipo.
 
----
-
 > ⚠️ **Nota:** Aunque cada miembro asumió un rol principal, trabajamos en equipo, compartiendo tareas y aprendiendo de forma colaborativa durante todo el proceso.
-
 
 ---
 
@@ -67,7 +68,7 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 - Crear y gestionar una base de datos local de puntos de interés (POIs).
 - Detectar cercanía (dentro de 500m) a un POI y mostrar su descripción.
 - Integrar una API de LLM (Gemini) para generar descripciones adaptadas al usuario.
-- Mostrar la información mediante pantalla OLED o salida de audio.
+- Mostrar la información mediante pantalla OLED y/o salida de audio.
 
 ---
 
@@ -76,7 +77,8 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 - ✅ El dispositivo debe obtener coordenadas mediante el módulo GPS.  
 - ✅ El sistema debe detectar cuando está a menos de 500 metros de un POI.  
 - ✅ Al llegar a un POI, debe mostrar una descripción automática.  
-- ✅ Las descripciones pueden generarse vía **IA (Gemini API)** para personalización.
+- ✅ Las descripciones pueden generarse vía **IA (Gemini API)** para personalización.  
+- ✅ La base de datos de POIs puede estar embebida en variables, archivo local o futura integración a microSD.
 
 ---
 
