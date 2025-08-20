@@ -1,0 +1,37 @@
+--- ESTRUCTURA DE LA LLAMADA A LA API DE GEMINI ---
+
+Descripción:
+Esta documentación describe la estructura de la solicitud HTTP POST utilizada para interactuar con la API de Gemini 1.5 Flash.
+
+1. ENDPOINT DE LA API:
+   - URL: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=[TU_API_KEY]
+   - Método: POST
+   - Parámetros: 'key' es la clave de autenticación del desarrollador.
+
+2. HEADERS (Cabeceras de la solicitud):
+   - Content-Type: application/json
+   - Descripción: Este header es necesario para indicar que el cuerpo de la solicitud (payload) está en formato JSON.
+
+3. PAYLOAD (Cuerpo de la solicitud JSON):
+   - Estructura:
+     {
+       "contents": [
+         {
+           "parts": [
+             {
+               "text": "[EL PROMPT DEL USUARIO AQUÍ]"
+             }
+           ]
+         }
+       ],
+       "generationConfig": {
+         "maxOutputTokens": 30
+       }
+     }
+
+4. EXPLICACIÓN DEL PAYLOAD:
+   - "contents": Contiene el historial de la conversación. En este proyecto, solo se envía un turno con la pregunta del usuario.
+   - "parts": Un array que contiene los elementos del turno, en este caso, solo el texto.
+   - "text": Aquí se inserta el prompt dinámico, por ejemplo, "Estoy en el Auditorio. Dame un dato interesante."
+   - "generationConfig": Permite controlar el comportamiento de la respuesta de la IA.
+     - "maxOutputTokens": 30: Se limita la longitud de la respuesta a un máximo de 30 tokens para asegurar que el texto sea corto y se ajuste a la pantalla LCD de 16x2.
