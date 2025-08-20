@@ -4,8 +4,6 @@
 
 **DescubreCR** es un sistema ciberfísico que detecta automáticamente la ubicación geográfica del usuario mediante un microcontrolador con GPS, y despliega información contextual y cultural sobre el sitio en tiempo real. Esta solución interactiva combina hardware embebido con generación dinámica de contenido a través de inteligencia artificial, permitiendo explorar espacios como campus, parques o zonas turísticas de forma educativa y personalizada. El proyecto responde al reto de **ExpoCenfo 2025** de crear *Soluciones para el Mundo Real*.
 
-> 📸 *[Aquí se incluirá una imagen del prototipo físico o del diagrama de bloques próximamente]*
-
 ---
 
 ## 1. Información del Proyecto
