@@ -54,7 +54,6 @@ Muchas personas carecen de herramientas que ofrezcan información relevante y en
 ### 👥 Usuarios beneficiarios
 - Estudiantes de nuevo ingreso en campus educativos.  
 - Visitantes de zonas turísticas o parques.  
-- Organizadores de eventos en espacios físicos amplios.  
 
 ---
 
