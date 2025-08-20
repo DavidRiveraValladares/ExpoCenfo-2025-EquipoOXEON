@@ -66,9 +66,9 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 ### 🎯 Objetivos Específicos
 - Integrar el microcontrolador **ESP32** con un **módulo GPS**.
 - Crear y gestionar una base de datos local de puntos de interés (POIs).
-- Detectar cercanía (dentro de 500m) a un POI y mostrar su descripción.
+- Detectar cercanía a un POI y mostrar su descripción.
 - Integrar una API de LLM (Gemini) para generar descripciones adaptadas al usuario.
-- Mostrar la información mediante pantalla OLED y/o salida de audio.
+- Mostrar la información mediante pantalla OLED.
 
 ---
 
@@ -78,7 +78,6 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 - ✅ El sistema debe detectar cuando está a menos de 500 metros de un POI.  
 - ✅ Al llegar a un POI, debe mostrar una descripción automática.  
 - ✅ Las descripciones pueden generarse vía **IA (Gemini API)** para personalización.  
-- ✅ La base de datos de POIs puede estar embebida en variables, archivo local o futura integración a microSD.
 
 ---
 
@@ -89,15 +88,9 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 > **Componentes previstos:**
 - **Microcontrolador:** ESP32-WROOM-32E (IdeaBoard)  
 - **Módulo GPS:** NEO-6M  
-- **Visualización/Audio:** Pantalla OLED y/o módulo de audio  
+- **Visualización/Audio:** Pantalla OLED.
 - **IA:** Gemini API para generación dinámica de texto  
 - **Librerías:** CircuitPython, `adafruit_gps`, `digitalio`, `time`
-
-> **Diagrama de conexión (próximamente):**  
-*Se incluirá diagrama de bloques del sistema con flujo de información entre módulos.*
-
-> **Boceto físico (próximamente):**  
-*Prototipo 3D en desarrollo. Imagen del dispositivo simulado en pruebas iniciales.*
 
 ---
 
@@ -152,12 +145,12 @@ GPS_LON = -84.0833
 def conectar_wifi():
     """Intenta conectar a una red WiFi con credenciales del archivo secrets.py"""
     try:
-        print("📡 Conectando a red WiFi...")
+        print("Conectando a red WiFi...")
         wifi.radio.connect(secrets["ssid"], secrets["password"])
-        print("✅ Conectado a", secrets["ssid"])
-        print("🌐 Dirección IP:", wifi.radio.ipv4_address)
+        print("Conectado a", secrets["ssid"])
+        print("Dirección IP:", wifi.radio.ipv4_address)
     except Exception as e:
-        print("❌ Error de conexión WiFi:", e)
+        print("Error de conexión WiFi:", e)
         time.sleep(3)
         microcontroller.reset()  # Reinicia el microcontrolador si falla la conexión
 
@@ -187,7 +180,7 @@ def consultar_gemini(prompt, api_key):
     }
 
     try:
-        print("🧠 Consultando modelo generativo...")
+        print("Consultando modelo generativo...")
         pool = socketpool.SocketPool(wifi.radio)
         session = adafruit_requests.Session(pool, ssl.create_default_context())
         response = session.post(API_URL, headers=headers, json=body)
@@ -197,10 +190,10 @@ def consultar_gemini(prompt, api_key):
             texto = result["candidates"][0]["content"]["parts"][0]["text"]
             return texto.strip()
         else:
-            print(f"⚠️ Error {response.status_code}: {response.text}")
+            print(f"Error {response.status_code}: {response.text}")
             return None
     except Exception as e:
-        print("❌ Error en consulta Gemini:", e)
+        print("Error en consulta Gemini:", e)
         return None
 
 # ------------------------- MAIN -------------------------
@@ -212,7 +205,7 @@ def main():
     respuesta = consultar_gemini(prompt, secrets["api_key"])
 
     if respuesta:
-        print("\n📍 Descripción del lugar (generada por IA):")
+        print("\nDescripción del lugar (generada por IA):")
         print("-" * 50)
         print(respuesta)
         print("-" * 50)
