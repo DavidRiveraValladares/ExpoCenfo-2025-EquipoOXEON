@@ -1,0 +1,18 @@
+Resultados de las pruebas unitarias del sistema ciberfísico para ExpoCenfo 2025.
+
+Fecha de ejecución: [18-08-2025]
+
+--- Prueba de Conexión WiFi ---
+Script: test_wifi_conexion.py
+Resultado: Éxito. Conectado a la red WiFi de la Universidad Cenfotec.
+Notas: Verificado en la consola que la IP fue asignada correctamente.
+
+--- Prueba de la API de Gemini ---
+Script: test_api_gemini.py
+Resultado: Éxito. La API respondió correctamente con una respuesta generada.
+Notas: La respuesta se recibió en menos de 10 segundos, lo que indica un buen rendimiento.
+
+--- Prueba de Lógica GPS (Haversine) ---
+Script: test_gps.py
+Resultado: Éxito. La función de distancia calcula correctamente las distancias esperadas entre los puntos de prueba.
+Notas: Se validaron los valores de distancia con una calculadora en línea.
