@@ -85,7 +85,7 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 > **Componentes previstos:**
 - **Microcontrolador:** ESP32-WROOM-32E (IdeaBoard)  
 - **Módulo GPS:** NEO-6M  
-- **Visualización/Audio:** Pantalla OLED.
+- **Visualización:** Pantalla OLED.
 - **IA:** Gemini API para generación dinámica de texto  
 - **Librerías:** CircuitPython, `adafruit_gps`, `digitalio`, `time`
 
