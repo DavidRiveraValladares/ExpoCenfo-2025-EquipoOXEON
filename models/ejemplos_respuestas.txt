@@ -1,0 +1,10 @@
+--- RESPUESTAS DE LA API DE GEMINI ---
+
+1. PROMPT: "Estoy en la Universidad Cenfotec. Dame un dato interesante."
+   RESPUESTA: "El campus de Cenfotec fue uno de los primeros en Costa Rica en ofrecer carreras enfocadas en la tecnología de la información."
+
+2. PROMPT: "Estoy en el Auditorio. Dame un dato interesante."
+   RESPUESTA: "El Auditorio es el espacio principal para las conferencias y eventos más importantes de la universidad."
+
+3. PROMPT: "Estoy en el Maker Space. Dame un dato interesante."
+   RESPUESTA: "El Maker Space es un laboratorio de innovación donde los estudiantes pueden dar vida a sus proyectos más creativos."
