@@ -110,7 +110,7 @@ Desarrollar un dispositivo ciberfísico autónomo que detecte la ubicación del 
 |--------|-------------|------------|
 | 📡 Señal GPS débil en interiores | El módulo GPS podría no captar señal en espacios cerrados | Uso de pruebas exteriores y lógica de "última ubicación conocida" |
 | ⚠️ Incompatibilidad de librerías | Problemas con `adafruit_gps` en CircuitPython | Documentar errores, buscar alternativas y usar UART directo si es necesario |
-| 🔋 Consumo energético alto | Riesgo de que la batería no soporte GPS + pantalla + audio | Optimización de código, uso de batería externa o powerbank |
+| 🔋 Consumo energético alto | Riesgo de que la batería no soporte GPS + pantalla | Optimización de código |
 
 ---
 
